@@ -7,7 +7,10 @@ class Level(object):
         super(Level, self).__init__()
         self.structure = []
         self.map = "maps/map.txt"
-        self.wall = ""
+        self.wall = "img/wall.png"
+        self.floor = "img/floor.png"
+        self.sprite_size = 20
+
 
     def generate(self):
         with open(self.map, "r") as map:
@@ -21,4 +24,18 @@ class Level(object):
             self.structure = level_structure
             print(self.structure)
 
-    def display(self):
+    def display(self, windows):
+        wall = pygame.image.load(self.wall).convert()
+        floor = pygame.image.load(self.floor).convert()
+        line_num = 0
+        for line in self.structure:
+            case_num = 0
+            for sprite in line:
+                y = line_num * self.sprite_size
+                x = case_num * self.sprite_size
+                if sprite == "X":
+                    windows.blit(wall, (x, y))
+                if sprite == "0":
+                    windows.blit(floor, (x, y))
+                case_num += 1
+            line_num += 1
