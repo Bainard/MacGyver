@@ -10,7 +10,8 @@ sprite_size = 40
 screen_size = number_of_sprite * sprite_size
 
 #Character
-charac = "img/MacGyver.png"
+
+
 # maps file
 
 map = "maps/map.txt"
