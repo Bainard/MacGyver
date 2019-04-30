@@ -1,16 +1,15 @@
 import pygame
 from pygame.locals import *
+from constantes import *
+
 
 class Level(object):
     """docstring for Level."""
+
     def __init__(self):
         super(Level, self).__init__()
         self.structure = []
-        self.map = "maps/map.txt"
-        self.wall = "img/wall.png"
-        self.floor = "img/floor.png"
-        self.sprite_size = 20
-
+        self.map = map
 
     def generate(self):
         with open(self.map, "r") as map:
@@ -25,14 +24,17 @@ class Level(object):
             print(self.structure)
 
     def display(self, windows):
-        wall = pygame.image.load(self.wall).convert()
-        floor = pygame.image.load(self.floor).convert()
+        # load and transform the scale for the titles with a tuple of pixel size
+        wall = pygame.transform.scale(pygame.image.load(
+            wall_img), (sprite_size, sprite_size))
+        floor = pygame.transform.scale(pygame.image.load(
+            floor_img), (sprite_size, sprite_size))
         line_num = 0
         for line in self.structure:
             case_num = 0
             for sprite in line:
-                y = line_num * self.sprite_size
-                x = case_num * self.sprite_size
+                y = line_num * sprite_size
+                x = case_num * sprite_size
                 if sprite == "X":
                     windows.blit(wall, (x, y))
                 if sprite == "0":

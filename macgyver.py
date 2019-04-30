@@ -5,6 +5,7 @@ from macclass import *
 pygame.init()
 test = Level()
 test.generate()
-windows = pygame.display.set_mode((300, 300))
+windows = pygame.display.set_mode((screen_size, screen_size))
 test.display(windows)
-pygame.display.flip()
+while game:
+    pygame.display.flip()
