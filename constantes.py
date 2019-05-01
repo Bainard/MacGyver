@@ -10,7 +10,9 @@ sprite_size = 40
 screen_size = number_of_sprite * sprite_size
 
 #Character
-
+startx_mac = 5
+starty_mac = 14
+boss_pos = (7 * sprite_size, 0 * sprite_size)
 
 # maps file
 
