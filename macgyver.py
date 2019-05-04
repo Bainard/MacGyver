@@ -15,7 +15,7 @@ item = Items(maze)
 item.random_pos()
 
 #loading img
-carac = pygame.image.load("img/MacGyver.png").convert_alpha()
+carac = pygame.transform.scale(pygame.image.load("img/MacGyver.png").convert_alpha(), (sprite_size, sprite_size))
 boss = pygame.image.load("img/boss.png").convert_alpha()
 needle = pygame.transform.scale(pygame.image.load(
     "img/aiguille.png").convert_alpha(), (sprite_size, sprite_size))
@@ -23,6 +23,7 @@ ether = pygame.transform.scale(pygame.image.load(
     "img/ether.png").convert_alpha(), (sprite_size, sprite_size))
 tube = pygame.transform.scale(pygame.image.load(
     "img/tube.png").convert_alpha(), (sprite_size, sprite_size))
+print((item.x_needle, item.y_needle))
 
 while game:
 
@@ -41,13 +42,28 @@ while game:
                 mac.move("down")
 
     # if mac are in the same pos than the boss
+    # print((mac.x, mac.y))
+    if (mac.x, mac.y) == (item.x_ether, item.y_ether):
+        item.x_ether, item.y_ether = 0, 0
+        item_count += 1
+    if (mac.x, mac.y) == (item.x_tube, item.y_tube):
+        item.x_tube, item.y_tube = 0, 0
+        item_count += 1
+    if (mac.x, mac.y) == (item.x_needle, item.y_needle):
+        item.x_needle, item.y_needle = 0, 0
+        item_count += 1
     if (mac.x, mac.y) == boss_pos:
-        game = 0
-        print("game over")
+        if item_count < 3:
+            game = 0
+            print("game over")
+        if item_count == 3:
+            game =0
+            print("gagne")
+
     maze.display(windows)
+    windows.blit(boss, boss_pos)
     windows.blit(needle, (item.x_needle, item.y_needle))
     windows.blit(ether, (item.x_ether, item.y_ether))
     windows.blit(tube, (item.x_tube, item.y_tube))
-    windows.blit(boss, boss_pos)
     windows.blit(carac, (mac.x, mac.y))
     pygame.display.flip()
