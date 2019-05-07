@@ -5,7 +5,8 @@ from constantes import *
 
 
 class Level(object):
-    """docstring for Level."""
+    """Construction of the Maze from a txt file, take 1 arguments
+        the windows where the maze gonna be displayed"""
 
     def __init__(self):
         super(Level, self).__init__()
@@ -24,7 +25,6 @@ class Level(object):
             self.structure = level_structure
 
     def display(self, windows):
-# load the image and transform the scale for the tile with a tuple of pixel
         wall = pygame.transform.scale(pygame.image.load(
             wall_img), (sprite_size, sprite_size))
         floor = pygame.transform.scale(pygame.image.load(

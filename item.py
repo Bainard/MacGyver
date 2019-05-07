@@ -5,7 +5,8 @@ from constantes import *
 
 
 class Items(object):
-    """docstring for Items. renvoyer juste un tuple random pour l"instant"""
+    """Shuffle the position of the items, take one arguments the maze where the
+        items will be placed"""
 
     def __init__(self, maze):
         super(Items, self).__init__()

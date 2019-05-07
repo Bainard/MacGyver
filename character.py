@@ -5,7 +5,8 @@ from constantes import *
 
 
 class Character(object):
-    """docstring for Character."""
+    """docstring for Character.
+    take 2 arguments: the maze where the caracter move and the direction"""
 
     def __init__(self, maze, ):
         super(Character, self).__init__()

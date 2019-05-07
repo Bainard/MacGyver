@@ -18,18 +18,4 @@ item_count = 0
 # maps file
 
 map = "maps/map.txt"
-
-# #load images
-# pygame.init()
-# carac = pygame.image.load("img/MacGyver.png").convert_alpha()
-# boss = pygame.image.load("img/boss.png").convert_alpha()
-# needle = pygame.transform.scale(pygame.image.load(
-#     "img/aiguille.png").convert_alpha(), (sprite_size, sprite_size))
-# ether = pygame.transform.scale(pygame.image.load(
-#     "img/ether.png").convert_alpha(), (sprite_size, sprite_size))
-# tube = pygame.transform.scale(pygame.image.load(
-#     "img/tube.png").convert_alpha(), (sprite_size, sprite_size))
-
-# loop
-
 game = 1
