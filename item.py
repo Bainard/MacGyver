@@ -23,7 +23,7 @@ class Items(object):
         self.x_tube = self.tile_x_tube * sprite_size
         self.tile_y_tube = 0
         self.y_tube = self.tile_y_tube * sprite_size
-        self.forbiden_tulpes = [boss_pos, (startx_mac, starty_mac),]
+        self.forbiden_tulpes = [boss_pos_sprite, (startx_mac, starty_mac),]
 
     def random_pos(self, ):
         while self.maze.structure[self.tile_y_needle][self.tile_x_needle] != "0"\
