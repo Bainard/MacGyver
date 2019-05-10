@@ -23,7 +23,6 @@ tube = pygame.transform.scale(pygame.image.load(
     "img/tube.png").convert_alpha(), (sprite_size, sprite_size))
 
 # loading sound
-sound_step = pygame.mixer.Sound("sound/footstep.wav")
 sound_item = pygame.mixer.Sound("sound/item.ogg")
 sound_gameover = pygame.mixer.Sound("sound/gameover.wav")
 sound_win = pygame.mixer.Sound("sound/win.wav")
@@ -33,53 +32,28 @@ while main_loop:
     maze.generate()
     maze.display(windows)
     mac = Character(maze)
-    item = Items(maze)
+    item = Items(maze, mac)
     item.random_pos()
     boss_pos = boss_pos
-    item_count = 0
     print(item.forbiden_tulpes)
     while game:
-
         pygame.time.Clock().tick(300)
-        for event in pygame.event.get():
-            if event.type == QUIT:
-                main_loop, game = 0,0
-            if event.type == KEYDOWN:
-                if event.key == K_RIGHT:
-                    mac.move("right")
-                    sound_step.play()
-                if event.key == K_LEFT:
-                    mac.move("left")
-                    sound_step.play()
-                if event.key == K_UP:
-                    mac.move("up")
-                    sound_step.play()
-                if event.key == K_DOWN:
-                    mac.move("down")
-                    sound_step.play()
-        if (mac.x, mac.y) == (item.x_ether, item.y_ether):
-            item.x_ether, item.y_ether = 0, 0*sprite_size
-            item_count += 1
-            sound_item.play()
-        if (mac.x, mac.y) == (item.x_tube, item.y_tube):
-            item.x_tube, item.y_tube = 0, 1*sprite_size
-            item_count += 1
-            sound_item.play()
-        if (mac.x, mac.y) == (item.x_needle, item.y_needle):
-            item.x_needle, item.y_needle = 0, 2*sprite_size
-            item_count += 1
-            sound_item.play()
+        mac.move()
+        item.pickup_item()
         if (mac.x, mac.y) == boss_pos:
-            if item_count < 3:
+            if item.item_count < 3:
                 sound_gameover.play()
                 print("game over")
                 game = 0
                 over_loop = 1
-            if item_count == 3:
+                message="YOU LOSE! Try again? Y/N"
+            if item.item_count == 3:
                 sound_win.play()
                 print("gagne")
                 game = 0
                 over_loop = 1
+                message="YOU WIN! Try again? Y/N"
+
         maze.display(windows)
         windows.blit(boss, (boss_pos))
         windows.blit(needle, (item.x_needle, item.y_needle))
@@ -87,9 +61,10 @@ while main_loop:
         windows.blit(tube, (item.x_tube, item.y_tube))
         windows.blit(carac, (mac.x, mac.y))
         pygame.display.flip()
+
     while over_loop:
         basicfont = pygame.font.SysFont(None, 48)
-        text = basicfont.render('Retry? Y/N', True, (255, 0, 0), (255, 255, 255))
+        text = basicfont.render(message, True, (255, 0, 0))
         textrect = text.get_rect()
         textrect.centerx = windows.get_rect().centerx
         textrect.centery = windows.get_rect().centery

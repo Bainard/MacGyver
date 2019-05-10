@@ -18,29 +18,34 @@ class Character(object):
         # coordonate in pxl
         self.x = startx_mac * sprite_size
         self.y = starty_mac * sprite_size
+        self.sound_step = pygame.mixer.Sound("sound/footstep.wav")
 
 
-    def move(self, direction):
-        if direction == "right":
-            if self.tile_x < number_of_sprite - 1:
-                if self.maze.structure[self.tile_y][self.tile_x + 1] != "X":
-                    self.tile_x += 1
-                    self.x = self.tile_x * sprite_size
+    def move(self,):
+        for event in pygame.event.get():
+            if event.type == KEYDOWN:
+                if event.key == K_RIGHT:
+                    if self.tile_x < number_of_sprite - 1:
+                        if self.maze.structure[self.tile_y][self.tile_x + 1] != "X":
+                            self.tile_x += 1
+                            self.x = self.tile_x * sprite_size
+                            self.sound_step.play()
 
-        if direction == "left":
-            if self.tile_x > 0:
-                if self.maze.structure[self.tile_y][self.tile_x - 1] != "X":
-                    self.tile_x -= 1
-                    self.x = self.tile_x * sprite_size
-
-        if direction == "up":
-            if self.tile_y > 0:
-                if self.maze.structure[self.tile_y - 1][self.tile_x] != "X":
-                    self.tile_y -= 1
-                    self.y = self.tile_y * sprite_size
-
-        if direction == "down":
-            if self.tile_y < number_of_sprite - 1:
-                if self.maze.structure[self.tile_y + 1][self.tile_x] != "X":
-                    self.tile_y += 1
-                    self.y = self.tile_y * sprite_size
+                if event.key == K_LEFT:
+                    if self.tile_x > 0:
+                        if self.maze.structure[self.tile_y][self.tile_x - 1] != "X":
+                            self.tile_x -= 1
+                            self.x = self.tile_x * sprite_size
+                            self.sound_step.play()
+                if event.key == K_UP:
+                    if self.tile_y > 0:
+                        if self.maze.structure[self.tile_y - 1][self.tile_x] != "X":
+                            self.tile_y -= 1
+                            self.y = self.tile_y * sprite_size
+                            self.sound_step.play()
+                if event.key == K_DOWN:
+                    if self.tile_y < number_of_sprite - 1:
+                        if self.maze.structure[self.tile_y + 1][self.tile_x] != "X":
+                            self.tile_y += 1
+                            self.y = self.tile_y * sprite_size
+                            self.sound_step.play()
