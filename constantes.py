@@ -20,5 +20,5 @@ boss_pos = (boss_pos_sprite[0]*sprite_size, boss_pos_sprite[1]*sprite_size)
 # maps file
 map = "maps/map.txt"
 main_loop = 1
-game = 1
+loop = 1
 over_loop = 0
