@@ -8,4 +8,4 @@ python3 macgyver.py
 
 
 
-![Alt text](img/screenshotmac.png?raw=true "screen")
+![Alt text](img/screenshotmac.png "screen")
