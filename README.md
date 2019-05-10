@@ -4,3 +4,5 @@ un petit jeu
 
 pip install -r requiremts
 
+python3 macgyver.py
+
