@@ -19,6 +19,9 @@ class Game(object):
 
 
     def game_loop(self):
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                self.game, self.over_loop = 0,0
         if (self.perso.x, self.perso.y) == boss_pos:
             if self.item.item_count < 3:
                 self.sound_gameover.play()
@@ -32,9 +35,7 @@ class Game(object):
                 self.game = 0
                 self.over_loop = 1
                 self.message="YOU WIN! Try again? Y/N"
-        for event in pygame.event.get():
-            if event.type == QUIT:
-                self.game, self.over_loop = 0,0
+
     def end_loop(self):
         basicfont = pygame.font.SysFont(None, 48)
         text = basicfont.render(self.message, True, (255, 0, 0))

@@ -13,13 +13,15 @@ class Character(object):
         # maze object for the acces of the matrice in class level
         self.maze = maze
         # coordonate in tiles
-        self.tile_x = startx_mac
-        self.tile_y = starty_mac
+        self.tile_x = 5
+        self.tile_y = 14
         # coordonate in pxl
         self.x = startx_mac * sprite_size
         self.y = starty_mac * sprite_size
         self.sound_step = pygame.mixer.Sound("sound/footstep.wav")
-
+        self.carac = pygame.transform.scale(pygame.image.load(
+            "img/MacGyver.png").convert_alpha(), (sprite_size, sprite_size))
+        self.boss = boss = pygame.image.load("img/boss.png").convert_alpha()
 
     def move(self,):
         for event in pygame.event.get():

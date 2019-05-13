@@ -5,8 +5,9 @@ from constantes import *
 
 
 class Items(object):
-    """Shuffle the position of the items, take one arguments the maze where the
-        items will be placed"""
+    """Shuffle the position of the items, take two arguments:
+        - the maze where the items will be placed
+        - the character who gonna picke up the items"""
 
     def __init__(self, maze, charac_pos):
         super(Items, self).__init__()
@@ -27,6 +28,12 @@ class Items(object):
         self.charac_pos = charac_pos
         self.sound_item = pygame.mixer.Sound("sound/item.ogg")
         self.item_count = 0
+        self.needle = pygame.transform.scale(pygame.image.load(
+            "img/aiguille.png").convert_alpha(), (sprite_size, sprite_size))
+        self.ether = pygame.transform.scale(pygame.image.load(
+            "img/ether.png").convert_alpha(), (sprite_size, sprite_size))
+        self.tube = pygame.transform.scale(pygame.image.load(
+            "img/tube.png").convert_alpha(), (sprite_size, sprite_size))
 
     def random_posV2(self,):
         x, y = 0, 0
