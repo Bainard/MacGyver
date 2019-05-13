@@ -4,7 +4,7 @@ from pygame.locals import *
 from constantes import *
 
 
-class Items(object):
+class Items():
     """Shuffle the position of the items, take two arguments:
         - the maze where the items will be placed
         - the character who gonna picke up the items"""
@@ -35,7 +35,9 @@ class Items(object):
         self.tube = pygame.transform.scale(pygame.image.load(
             "img/tube.png").convert_alpha(), (sprite_size, sprite_size))
 
-    def random_posV2(self,):
+    def random_tiles(self,):
+        """take random coordonate, check if this is not a wall
+            or a position already taken """
         x, y = 0, 0
         while self.maze.structure[y][x] != "0"\
                 or (x, y) in self.forbiden_tulpes:
@@ -45,17 +47,19 @@ class Items(object):
         return(x, y)
 
     def random_pos(self, ):
-        self.tile_x_needle, self.tile_y_needle = self.random_posV2()
+        """assign a position for each item"""
+        self.tile_x_needle, self.tile_y_needle = self.random_tiles()
         self.x_needle = self.tile_x_needle * sprite_size
         self.y_needle = self.tile_y_needle * sprite_size
-        self.tile_x_tube, self.tile_y_tube = self.random_posV2()
+        self.tile_x_tube, self.tile_y_tube = self.random_tiles()
         self.x_tube = self.tile_x_tube * sprite_size
         self.y_tube = self.tile_y_tube * sprite_size
-        self.tile_x_ether, self.tile_y_ether = self.random_posV2()
+        self.tile_x_ether, self.tile_y_ether = self.random_tiles()
         self.x_ether = self.tile_x_ether * sprite_size
         self.y_ether = self.tile_y_ether * sprite_size
 
     def pickup_item(self, ):
+        """for pickup the items"""
         if (self.charac_pos.x, self.charac_pos.y) == (self.x_ether, self.y_ether):
             self.x_ether, self.y_ether = 0, 0 * sprite_size
             self.item_count += 1

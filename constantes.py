@@ -1,5 +1,3 @@
-import pygame
-from pygame.locals import *
 
 # Maze structure
 
@@ -9,7 +7,7 @@ number_of_sprite = 15
 sprite_size = 40
 screen_size = number_of_sprite * sprite_size
 
-#Character
+# Character
 startx_mac = 5
 starty_mac = 14
 boss_pos_sprite = (7, 0)

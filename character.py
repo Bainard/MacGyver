@@ -21,10 +21,13 @@ class Character(object):
         self.sound_step = pygame.mixer.Sound("sound/footstep.wav")
         self.carac = pygame.transform.scale(pygame.image.load(
             "img/MacGyver.png").convert_alpha(), (sprite_size, sprite_size))
-        self.boss = boss = pygame.image.load("img/boss.png").convert_alpha()
+        self.boss = pygame.image.load("img/boss.png").convert_alpha()
 
     def move(self,):
+        """ method for moving the charac"""
         for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                exit()
             if event.type == KEYDOWN:
                 if event.key == K_RIGHT:
                     if self.tile_x < number_of_sprite - 1:

@@ -18,9 +18,7 @@ while main_loop:
     mac = Character(maze)
     item = Items(maze, mac)
     item.random_pos()
-    game = Game(item,windows,mac)
-    boss_pos = boss_pos
-
+    game = Game(item, windows, mac)
 
     while game.game:
         pygame.time.Clock().tick(300)
@@ -34,11 +32,11 @@ while main_loop:
         windows.blit(item.tube, (item.x_tube, item.y_tube))
         windows.blit(mac.carac, (mac.x, mac.y))
         pygame.display.flip()
-        if (game.game, game.over_loop) == (0,0):
+        if (game.game, game.over_loop) == (0, 0):
             main_loop = 0
 
     while game.over_loop:
         game.end_loop()
         print(game.game)
-        if (game.game, game.over_loop) == (0,0):
+        if (game.game, game.over_loop) == (0, 0):
             main_loop = 0

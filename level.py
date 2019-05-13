@@ -4,7 +4,7 @@ from pygame.locals import *
 from constantes import *
 
 
-class Level(object):
+class Level():
     """Construction of the Maze from a txt file, take 1 arguments
         the windows where the maze gonna be displayed"""
 
@@ -14,9 +14,10 @@ class Level(object):
         self.map = map
 
     def generate(self):
-        with open(self.map, "r") as map:
+        """ build a double entry list from map.txt """
+        with open(self.map, "r") as maps:
             level_structure = []
-            for line in map:
+            for line in maps:
                 level_line = []
                 for sprite in line:
                     if sprite != '\n':
@@ -25,6 +26,7 @@ class Level(object):
             self.structure = level_structure
 
     def display(self, windows):
+        """ display the sprites according to the double entry list"""
         wall = pygame.transform.scale(pygame.image.load(
             wall_img), (sprite_size, sprite_size))
         floor = pygame.transform.scale(pygame.image.load(
