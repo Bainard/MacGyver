@@ -10,12 +10,9 @@ class Character(object):
 
     def __init__(self, maze, ):
         super(Character, self).__init__()
-        # maze object for the acces of the matrice in class level
         self.maze = maze
-        # coordonate in tiles
         self.tile_x = 5
         self.tile_y = 14
-        # coordonate in pxl
         self.x = startx_mac * sprite_size
         self.y = starty_mac * sprite_size
         self.sound_step = pygame.mixer.Sound("sound/footstep.wav")
