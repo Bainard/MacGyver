@@ -1,5 +1,4 @@
 import pygame
-from pygame.locals import *
 from level import Level
 from character import Character
 from item import Items
@@ -10,6 +9,7 @@ pygame.mixer.pre_init(44100, -16, 1, 512)
 pygame.init()
 
 windows = pygame.display.set_mode((screen_size, screen_size))
+main_loop = 1
 
 while main_loop:
     maze = Level()
@@ -26,7 +26,7 @@ while main_loop:
         item.pickup_item()
         game.game_loop()
         maze.display(windows)
-        windows.blit(mac.boss, (boss_pos))
+        windows.blit(mac.boss, boss_pos)
         windows.blit(item.needle, item.pos_item['needle'])
         windows.blit(item.ether, item.pos_item['ether'])
         windows.blit(item.tube, item.pos_item['tube'])

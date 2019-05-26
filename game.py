@@ -1,5 +1,7 @@
 import pygame
 from constantes import *
+
+
 class Game(object):
     """docstring for game."""
 
@@ -15,8 +17,7 @@ class Game(object):
         self.perso = perso
         self.sound_gameover = pygame.mixer.Sound("sound/gameover.wav")
         self.sound_win = pygame.mixer.Sound("sound/win.wav")
-        self.message=""
-
+        self.message = ""
 
     def game_loop(self):
         if (self.perso.x, self.perso.y) == boss_pos:
@@ -25,14 +26,13 @@ class Game(object):
                 print("game over")
                 self.game = 0
                 self.over_loop = 1
-                self.message="YOU LOSE! Try again? Y/N"
+                self.message = "YOU LOSE! Try again? Y/N"
             if self.item.item_count == 3:
                 self.sound_win.play()
                 print("gagne")
                 self.game = 0
                 self.over_loop = 1
-                self.message="YOU WIN! Try again? Y/N"
-
+                self.message = "YOU WIN! Try again? Y/N"
 
     def end_loop(self):
         basicfont = pygame.font.SysFont(None, 48)
@@ -49,4 +49,4 @@ class Game(object):
                 if event.key == pygame.K_y:
                     self.game, self.over_loop = 1, 0
                 if event.key == pygame.K_n:
-                    self.over_loop, self.game = 0,0
+                    self.over_loop, self.game = 0, 0

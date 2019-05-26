@@ -1,10 +1,8 @@
 import pygame
-import random
-from pygame.locals import *
 from constantes import *
 
 
-class Level():
+class Level:
     """Construction of the Maze from a txt file, take 1 arguments
         the windows where the maze gonna be displayed"""
 

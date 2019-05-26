@@ -1,13 +1,12 @@
 import pygame
 import random
-from pygame.locals import *
 from constantes import *
 
 
-class Items():
+class Items:
     """Shuffle the position of the items, take two arguments:
         - the maze where the items will be placed
-        - the character who gonna picke up the items"""
+        - the character who gonna pick up the items"""
 
     def __init__(self, maze, charac_pos):
         super(Items, self).__init__()
@@ -24,16 +23,16 @@ class Items():
         self.tube = pygame.transform.scale(pygame.image.load(
             "img/tube.png").convert_alpha(), (sprite_size, sprite_size))
 
-    def shuffle_pos(self,):
+    def shuffle_pos(self, ):
         """take random coordonate, check if this is not a wall
             or a position already taken """
         x, y = 0, 0
-        while self.maze.structure[int(y / 40)][int(x / 40)] != "0"\
+        while self.maze.structure[int(y / 40)][int(x / 40)] != "0" \
                 or (x, y) in self.forbiden_tulpes:
             x = random.randint(0, 14) * sprite_size
             y = random.randint(0, 14) * sprite_size
         self.forbiden_tulpes.append((x, y))
-        return(x, y)
+        return x, y
 
     def random_pos(self, ):
         """assign a position for each item"""
